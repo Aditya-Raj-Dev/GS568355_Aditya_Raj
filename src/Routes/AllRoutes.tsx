@@ -2,10 +2,10 @@ import { Routes, Route } from "react-router-dom";
 import Login from "../Pages/Login";
 import Home from "../Pages/Home";
 import Authentication from "../Authentication/Authentication";
-import Store from "../Pages/Store";
 import Sku from "../Pages/Sku";
 import Planning from "../Pages/Planning";
 import Charts from "../Pages/Charts";
+import StoreGrid from "../Pages/Store";
 const AllRoutes = () => {
   return (
     <Routes>
@@ -22,7 +22,7 @@ const AllRoutes = () => {
         path="/store"
         element={
           <Authentication>
-            <Store />
+            <StoreGrid />
           </Authentication>
         }
       />

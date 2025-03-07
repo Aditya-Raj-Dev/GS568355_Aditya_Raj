@@ -29,23 +29,31 @@ const Login: React.FC = () => {
     const validEmail = "adi@gmail.com";
     const validPassword = "12345";
   
-
     if (email === validEmail && password === validPassword) {
-      dispatch(login({email,token:"12345"})); // Dispatch login action
+      dispatch(login({ email, token: "12345" }));
       toast({
         title: "Login Successful",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      navigate("/"); // Redirect to dashboard
+      navigate("/");
     } else {
-      toast({
-        title: "Invalid Email or Password",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
+      if (email !== validEmail) {
+        toast({
+          title: "Email is incorrect",
+          status: "warning",
+          duration: 3000,
+          isClosable: true,
+        });
+      } else if (password !== validPassword) {
+        toast({
+          title: "Password is incorrect",
+          status: "warning",
+          duration: 3000,
+          isClosable: true,
+        });
+      }
     }
   };
 

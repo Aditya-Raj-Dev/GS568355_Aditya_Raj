@@ -7,10 +7,17 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
+import { ModuleRegistry } from "ag-grid-community";
+import { ClientSideRowModelModule } from "ag-grid-community";
+
+// Register the client side row model module (and any other modules you need)
+ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+
 root.render(
   <BrowserRouter>
       <ChakraProvider>

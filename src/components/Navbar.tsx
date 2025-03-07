@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Flex,
@@ -22,8 +22,10 @@ import { useNavigate } from "react-router-dom";
 import { VscAccount } from "react-icons/vsc";
 import { GoTriangleDown } from "react-icons/go";
 import { logout } from "../store/Authentication/authSlice";
+import ConfirmationModal from "../components/ConfirmationModal";
 
 const Navbar: React.FC = () => {
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const isAuth = useSelector((state: RootState) => state.auth.isAuthenticated);
   console.log(isAuth, "isAuth Navbar");
   const dispatch: AppDispatch = useDispatch();
@@ -53,6 +55,12 @@ const Navbar: React.FC = () => {
 
   return (
     <Flex justifyContent="space-between" paddingLeft="20px" paddingRight="10px" height="100px">
+      <ConfirmationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleLogout}
+        message="Are you sure you want to log out?"
+      />
       <Flex gap="40px">
         <Box display={{ base: "none", md: "block", lg: "block" }}>
           <Image
@@ -83,7 +91,7 @@ const Navbar: React.FC = () => {
                 </MenuButton>
                 <MenuList>
                   <MenuItem
-                    onClick={handleLogout}
+                  onClick={() => setIsModalOpen(true)}
                     _hover={{
                       bg: "red.500",
                       color: "white",
